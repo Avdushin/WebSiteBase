@@ -1,0 +1,19 @@
+/* 
+* File name: variables.сss
+* Author: Ananazz
+* Description: css variables
+*/
+:root {
+  /* Fonts */
+  --font-family: 'Monserat', sans-serif;
+  /* TextColor */
+  --text-color: #373737;
+  --bg-color: #fff;
+  /* COLORS */
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #cdcdcd;
+  --red: #E21A20;
+  --green: #50C878;
+  --blue: #0933c0;
+}

@@ -1,0 +1,21 @@
+/* 
+* File name: index.css
+* Author: Ananazz
+* Description: General css styles
+*/
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,700&display=swap');
+/* Reset css styles */
+@import url(./css/reset.css);
+/* CSS variables */
+@import url(./css/variables.сss);
+/* CSS desktop styles */
+@import url(./css/styles.css);
+@import url(.assets/css/styles.css);
+/* CSS responsive (mobile) styles */
+@import url(./css/responsive.css);
+
+/* CSS BLOCKS */
+@import url(css/blocks/header.css);
+@import url(css/blocks/main.css);
+@import url(css/blocks/footer.css);
