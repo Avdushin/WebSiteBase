@@ -46,18 +46,22 @@ function prname() {
         .pipe(replace('%prname%', rootFolder))
         .pipe(dest('dist/'));
 }
+function clearcss() {
+    return src('dist/**/**')
+        .pipe(replace('<link rel="stylesheet" href="@@styles"> <!-- Advanced styles -->>', ''))
+        .pipe(dest('dist/'));
+}
 function server() {
     sync.init({
         server: './dist',
         notify: false
     })
 
-    watch('src/**/**.html', series(html, prname)).on('change', sync.reload)
-    watch('src/404.html', series(html, prname)).on('change', sync.reload)
-    watch('src/assets/**/**', series(assets, prname)).on('change', sync.reload)
+    watch('src/**/**.html', series(html, prname)).on('change', sync.reload) // html watcher
+    watch('src/404.html', series(html, prname)).on('change', sync.reload) // 404 page wathcer
+    watch('src/assets/**/**', series(assets, prname)).on('change', sync.reload) // styles wathcer
 }
 
-exports.prname = prname;
-exports.build = series(assets, html, prname)
-exports.server = series(assets, html, prname, server)
-exports.default = series(assets, html, prname, server)
+exports.build = series(assets, html, clearcss, prname)
+exports.server = series(assets, html, clearcss, prname, server)
+exports.default = series(assets, html, clearcss, prname, server)
