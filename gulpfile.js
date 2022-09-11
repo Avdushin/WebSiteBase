@@ -53,6 +53,7 @@ function server() {
     })
 
     watch('src/**/**.html', series(html, prname)).on('change', sync.reload)
+    watch('src/404.html', series(html, prname)).on('change', sync.reload)
     watch('src/assets/**/**', series(assets, prname)).on('change', sync.reload)
 }
 
