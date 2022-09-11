@@ -3,10 +3,14 @@ const { src, dest, series, watch } = require('gulp'),
     include = require('gulp-file-include'),
     htmlmin = require('gulp-htmlmin'),
     csso = require('gulp-csso'),
+    replace = require('gulp-replace'),
+    fs = require('fs'),
+    path = require("path"),
+    rootFolder = path.dirname(__filename).split(path.sep).pop(),
     sync = require('browser-sync').create()
 
 function html() {
-    return src('src/**/**.html')
+    return src(['!src/**/_*/', 'src/**/**.html'])
         .pipe(include({
             prefix: "@@",
         }))
@@ -14,7 +18,7 @@ function html() {
         .pipe(dest('dist'))
 }
 function assets() {
-    return src('src/**/**')
+    return src(['!src/_*/', 'src/**/**'])
         .pipe(include({
             prefix: "@@",
         }))
@@ -37,15 +41,22 @@ function css() {
         // .pipe(csso())
         .pipe(dest('dist/css/'))
 }
+function prname() {
+    return src('dist/index.html')
+        .pipe(replace('%prname%', rootFolder))
+        .pipe(dest('dist/'));
+}
 function server() {
     sync.init({
-        server: './dist'
+        server: './dist',
+        notify: false
     })
 
-    watch('src/**/**.html', series(html)).on('change', sync.reload)
-    watch('src/assets/**/**', series(assets)).on('change', sync.reload)
+    watch('src/**/**.html', series(html, prname)).on('change', sync.reload)
+    watch('src/assets/**/**', series(assets, prname)).on('change', sync.reload)
 }
 
-exports.build = series(assets, html)
-exports.server = series(assets, html, server)
-exports.default = series(assets, html, server)
+exports.prname = prname;
+exports.build = series(assets, html, prname)
+exports.server = series(assets, html, prname, server)
+exports.default = series(assets, html, prname, server)
