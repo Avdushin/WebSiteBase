@@ -1,0 +1,13 @@
+/* 
+*   Import styles from SAAS/SCSS files
+*/
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #FFFFFF;
+  background-color: #333333;
+}
