@@ -2,7 +2,9 @@
 
 ### Simple web site sources with gulp
 
-![DEMO](https://cdn.discordapp.com/attachments/650681889308278785/1018540399029133402/demo.png)
+<a href="https://avdushin.github.io/WebSiteBase/" target="_blank">
+    <img src="https://cdn.discordapp.com/attachments/650681889308278785/1018540399029133402/demo.png">
+</a>
 
 ### DEPENDENCIES
 
@@ -16,24 +18,24 @@
 ```powershell
 git clone https://github.com/Avdushin/WebSiteBase
 cd WebSiteBase
-make setup
+npm install
 ```
 
-### HAND INSTALL
-
-or you can start `install/node-v16.17.0-x64.msi` to download nodejs-v16.17.0
+### INSTALL WITH Makefile
 
 ```powershell
-npm init -y
-npm i -D gulp gulp-file-include gulp-remove-empty-lines gulp-csso browser-sync del gulp-htmlmin gulp-replace fs
+git clone https://github.com/Avdushin/WebSiteBase
+cd WebSiteBase
+make install
 ```
 
 ### USAGE:
 
 #### Make
 
-* Type `make setup` to install gulp && packages
-* Type `make clean` to clean `dist` folder
+* Type `make` or `make server` to build and run server at the localhost:3000
+
+* Type `make build` to build site
 
 #### gulp
 
