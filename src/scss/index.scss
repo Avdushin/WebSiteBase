@@ -1,0 +1,9 @@
+/* 
+*   Import styles from SAAS/SCSS files
+*/
+// variables
+@import "variables";
+// Desktop styles
+@import "styles";
+// Responsive (mobile/tablet) styles
+@import "responsive";

@@ -1,5 +1,8 @@
-setup:
-	powershell start ./install/node-v16.17.0-x64.msi
+server:
+	gulp server
 
-clean: 
-	rmdir /s /q dist
+build:
+	gulp build
+
+install:
+	powershell npm install
