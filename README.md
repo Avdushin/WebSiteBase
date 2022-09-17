@@ -29,7 +29,7 @@ cd WebSiteBase
 make install
 ```
 
-### USAGE:
+### USAGE
 
 #### Make
 
