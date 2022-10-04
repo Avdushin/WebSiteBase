@@ -17,29 +17,9 @@ function html() {
         .pipe(htmlmin({ collapseWhitespace: false }))
         .pipe(dest('dist'))
 }
-function assets() {
-    return src(['!src/_*/', 'src/**/**'])
-        .pipe(include({
-            prefix: "@@",
-        }))
-        .pipe(removeEmptyLines({
-            removeComments: false
-        }))
-        // .pipe(cleanCSS({compatibility: 'ie8'}))
-        // .pipe(csso()) // to minimize css (without comments)
-        .pipe(dest('dist/'))
-}
-function css() {
-    return src(['src/assets/css/**/**.css', 'src/**/**.html'])
-        .pipe(include({
-            prefix: "@@",
-        }))
-        .pipe(removeEmptyLines({
-            removeComments: false
-        }))
-        // .pipe(cleanCSS({compatibility: 'ie8'}))
-        // .pipe(csso())
-        .pipe(dest('dist/css/'))
+function content() {
+    return src(['src/**/**'])
+        .pipe(dest('dist'))
 }
 function prname() {
     return src('dist/index.html')
@@ -59,9 +39,9 @@ function server() {
 
     watch('src/**/**.html', series(html, prname)).on('change', sync.reload) // html watcher
     watch('src/404.html', series(html, prname)).on('change', sync.reload) // 404 page wathcer
-    watch('src/assets/**/**', series(assets, prname)).on('change', sync.reload) // styles wathcer
+    watch('src/assets/**', series(content, prname)).on('change', sync.reload) // styles wathcer
 }
 
-exports.build = series(assets, html, clearcss, prname)
-exports.server = series(assets, html, clearcss, prname, server)
-exports.default = series(assets, html, clearcss, prname, server)
+exports.build = series(content, html, clearcss, prname)
+exports.server = series(content, html, clearcss, prname, server)
+exports.default = series(content, html, clearcss, prname, server)
